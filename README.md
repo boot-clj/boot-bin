@@ -10,7 +10,8 @@ Boot executable -- downloads and runs [Boot](http://boot-clj.com).
 System requirements:
 
 * Java 7
-* bash shell
+* Boot
+* Bash shell
 * [launch4j](http://launch4j.sourceforge.net/)
 
 ```
