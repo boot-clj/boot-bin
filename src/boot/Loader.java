@@ -7,8 +7,10 @@ import java.net.*;
 import java.util.*;
 import java.util.jar.*;
 import java.util.zip.*;
+import java.nio.file.Files;
 import java.util.regex.Pattern;
 import java.lang.reflect.Method;
+import static java.nio.file.StandardCopyOption.*;
 
 @SuppressWarnings("unchecked")
 public class Loader {
@@ -163,16 +165,18 @@ public class Loader {
 
     public static File
     download(String url, File f) throws Exception {
-        mkParents(f);
-        if (f.exists()) f.delete();
+        File   tmp = File.createTempFile("boot", ".jar");
         int    n   = -1;
         byte[] buf = new byte[4096];
+
         System.err.print("Downloading " + url + "...");
         try (InputStream is = (new URL(url)).openStream();
-                OutputStream os = new FileOutputStream(f)) {
-            while (-1 != (n = is.read(buf)))
-                os.write(buf, 0, n); }
+                OutputStream os = new FileOutputStream(tmp)) {
+            while (-1 != (n = is.read(buf))) os.write(buf, 0, n); }
         System.err.println("done.");
+
+        mkParents(f);
+        Files.move(tmp.toPath(), f.toPath(), REPLACE_EXISTING, ATOMIC_MOVE);
         return f; }
 
     public static String
@@ -182,9 +186,7 @@ public class Loader {
     public static File
     validateBinaryFile(File f) throws Exception {
         if (f == null) return null;
-        try (FileInputStream fis = new FileInputStream(f);
-                JarInputStream jis = new JarInputStream(fis)) {
-            for (ZipEntry e = jis.getNextEntry(); e != null; e = jis.getNextEntry()); }
+        try (ZipFile z = new ZipFile(f)) { }
         catch (IOException ie) { f = null; }
         return f; }
 
