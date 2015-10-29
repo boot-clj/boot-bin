@@ -5,6 +5,8 @@ set -e
 export PATH=${PATH}:launch4j
 VERSION=$(git describe)
 
+mkdir bin
+
 echo -e "\033[0;33m<< Version: $VERSION >>\033[0m"; \
 
 boot -s src -r resources javac jar -m boot.Loader -f loader.jar
