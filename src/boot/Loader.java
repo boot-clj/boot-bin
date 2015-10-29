@@ -165,7 +165,9 @@ public class Loader {
 
     public static File
     download(String url, File f) throws Exception {
-        File   tmp = File.createTempFile("boot", ".jar");
+        mkParents(f);
+
+        File   tmp = File.createTempFile("boot", ".jar", f.getParentFile());
         int    n   = -1;
         byte[] buf = new byte[4096];
 
@@ -175,7 +177,6 @@ public class Loader {
             while (-1 != (n = is.read(buf))) os.write(buf, 0, n); }
         System.err.println("done.");
 
-        mkParents(f);
         Files.move(tmp.toPath(), f.toPath(), REPLACE_EXISTING, ATOMIC_MOVE);
         return f; }
 
