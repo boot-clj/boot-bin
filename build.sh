@@ -5,7 +5,7 @@ set -e
 export PATH=${PATH}:launch4j
 VERSION=$(git describe)
 
-mkdir bin
+mkdir -p bin
 
 echo -e "\033[0;33m<< Version: $VERSION >>\033[0m"; \
 
