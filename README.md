@@ -1,4 +1,4 @@
-# boot.sh
+# boot-bin
 
 Boot executable -- downloads and runs [Boot](http://boot-clj.com).
 
