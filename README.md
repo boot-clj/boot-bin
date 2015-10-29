@@ -5,6 +5,11 @@ Boot executable -- downloads and runs [Boot](http://boot-clj.com).
 * Compatible with any 2.x.x version of Boot.
 * Unix / OSX / Linux / Windows
 
+| Operating System | Download |
+|------------------|----------|
+| Unix / OSX / Linux | https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh |
+| Windows | https://github.com/boot-clj/boot-bin/releases/download/latest/boot.exe |
+
 ## Build
 
 System requirements:
