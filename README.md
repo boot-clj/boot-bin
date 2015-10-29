@@ -17,3 +17,9 @@ System requirements:
 ```
 ./build.sh # builds bin/boot.sh (Unix) and bin/boot.exe (Windows)
 ```
+
+## License
+
+Copyright © 2015 Alan Dipert and Micha Niskin
+
+Distributed under the Eclipse Public License, the same as Clojure.
