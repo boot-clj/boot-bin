@@ -1,7 +1,5 @@
 // vim: et:ts=4:sw=4
 
-package boot;
-
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -13,9 +11,9 @@ import java.lang.reflect.Method;
 import static java.nio.file.StandardCopyOption.*;
 
 @SuppressWarnings("unchecked")
-public class Loader {
+public class Boot {
 
-    public static final String initialVersion = "2.4.2";
+    public static final String initialVersion = "2.5.0";
     public static final File   homedir        = new File(System.getProperty("user.home"));
     public static final File   workdir        = new File(System.getProperty("user.dir"));
 
@@ -85,9 +83,9 @@ public class Loader {
     public static HashMap<String, File>
     propertiesFiles() throws Exception {
         HashMap<String, File> ret = new HashMap<>();
-        String[] names  = new String[]{"old-boot", "boot", "project", "cwd"};
+        String[] names  = new String[]{"boot", "project", "cwd"};
         File     olddir = new File(bootdir(), "cache");
-        File[]   dirs   = new File[]{olddir, bootdir(), projectDir(), workdir};
+        File[]   dirs   = new File[]{bootdir(), projectDir(), workdir};
         for (int i = 0; i < dirs.length; i++)
             ret.put(names[i], new File(dirs[i], "boot.properties"));
         return ret; }
@@ -96,7 +94,7 @@ public class Loader {
     mergeProperties() throws Exception {
         Properties p = new Properties();
         HashMap<String, File> fs = propertiesFiles();
-        for (String k : new String[]{"old-boot", "boot", "project", "cwd"})
+        for (String k : new String[]{"boot", "project", "cwd"})
             try (FileInputStream is = new FileInputStream(fs.get(k))) {
                 p.load(is); }
             catch (FileNotFoundException e) {}
@@ -244,7 +242,7 @@ public class Loader {
             a = new String[]{"-u"};
             f = install(initialVersion);
             System.setProperty("BOOT_VERSION", initialVersion);
-            System.err.println("Running for the first time: updating to latest version."); }
+            System.err.println("Running for the first time, BOOT_VERSION not set: updating to latest."); }
 
         URLClassLoader cl = loadJar(f);
         Class          c  = Class.forName("boot.App", true, cl);

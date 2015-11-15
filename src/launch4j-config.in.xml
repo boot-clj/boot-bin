@@ -3,7 +3,7 @@
   <outfile>bin/boot.exe</outfile>
   <jar>target/loader.jar</jar>
   <classPath>
-    <mainClass>boot.Loader</mainClass>
+    <mainClass>Boot</mainClass>
   </classPath>
   <jre>
     <path></path>

@@ -9,7 +9,7 @@ mkdir -p bin
 
 echo -e "\033[0;33m<< Version: $VERSION >>\033[0m"; \
 
-boot -s src -r resources javac jar -m boot.Loader -f loader.jar
+boot -s src -r resources javac jar -m Boot -f loader.jar
 
 sed -e "s@__VERSION__@$(git describe)@" src/launch4j-config.in.xml > launch4j-config.xml
 
