@@ -1,6 +1,6 @@
 # boot-bin
 
-Boot executable -- downloads and runs [Boot](http://boot-clj.com).
+Boot executable&mdash;downloads and runs [Boot](http://boot-clj.com).
 
 * Compatible with any 2.x.x version of Boot.
 * Unix / OSX / Linux / Windows
