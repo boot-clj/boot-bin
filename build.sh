@@ -4,12 +4,25 @@ set -e
 
 export PATH=${PATH}:launch4j
 VERSION=$(git describe)
+JAVA_VERSION=$(java -version 2>&1 \
+  | awk -F '"' '/version/ {print $2}' \
+  |awk -F. '{print $1 "." $2}')
 
-mkdir -p bin
+if [ "$JAVA_VERSION" != "1.7" ]; then
+  echo "You must build with JDK version 1.7 only." 1>&2
+  exit 1
+fi
+
+mkdir -p bin build
+
+if [ ! -e build/boot ]; then
+  wget -O build/boot https://github.com/boot-clj/boot-bin/releases/download/2.4.2/boot.sh
+  chmod 755 build/boot
+fi
 
 echo -e "\033[0;33m<< Version: $VERSION >>\033[0m"; \
 
-boot -s src -r resources javac jar -m Boot -f loader.jar
+./build/boot -s src -r resources javac jar -m Boot -f loader.jar
 
 sed -e "s@__VERSION__@$(git describe)@" src/launch4j-config.in.xml > launch4j-config.xml
 
