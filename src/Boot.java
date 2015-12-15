@@ -169,11 +169,10 @@ public class Boot {
         int    n   = -1;
         byte[] buf = new byte[4096];
 
-        System.err.print("Downloading " + url + "...");
+        System.err.println("Downloading " + url + "...");
         try (InputStream is = (new URL(url)).openStream();
                 OutputStream os = new FileOutputStream(tmp)) {
             while (-1 != (n = is.read(buf))) os.write(buf, 0, n); }
-        System.err.println("done.");
 
         Files.move(tmp.toPath(), f.toPath(), REPLACE_EXISTING, ATOMIC_MOVE);
         return f; }
@@ -208,6 +207,14 @@ public class Boot {
     latestBinaryFile() throws Exception {
         return binaryFileValidate(latestInstalledVersion(bindir().listFiles())); }
 
+    public static String
+    ignorePrerelease(String version) throws Exception {
+        String ret = version;
+        if (version != null && version.matches("^2\\.0\\.0-(rc|pre)[0-9]+$")) {
+            ret = null;
+            System.err.println("Version "+version+" is no longer supported."); }
+        return ret; }
+
     public static File
     install(String version) throws Exception {
         Properties p  = propertiesResource("boot/tag-release.properties");
@@ -230,7 +237,7 @@ public class Boot {
     main(String[] args) throws Exception {
         String[] a = args;
         File     f = null;
-        String   v = config("BOOT_VERSION");
+        String   v = ignorePrerelease(config("BOOT_VERSION"));
 
         if (v != null && (f = binaryFileValidate(v)) == null)
             f = install(v);
