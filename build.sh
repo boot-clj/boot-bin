@@ -22,7 +22,7 @@ fi
 
 echo -e "\033[0;33m<< Version: $VERSION >>\033[0m"; \
 
-./build/boot -s src -r resources javac jar -m Boot -f loader.jar
+./build/boot -s src -r resources javac jar -m Boot -f loader.jar target
 
 sed -e "s@__VERSION__@$(git describe)@" src/launch4j-config.in.xml > launch4j-config.xml
 
