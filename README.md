@@ -2,7 +2,7 @@
 
 Boot executable&mdash;downloads and runs [Boot](http://boot-clj.com).
 
-* Compatible with any 2.x.x version of Boot.
+* Compatible with any version of Boot, 2.0.0 or later.
 * Unix / OSX / Linux / Windows
 
 | Operating System | Download |
