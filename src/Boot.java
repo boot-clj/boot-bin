@@ -13,7 +13,7 @@ import static java.nio.file.StandardCopyOption.*;
 @SuppressWarnings("unchecked")
 public class Boot {
 
-    public static final String initialVersion = "2.5.2";
+    public static final String initialVersion = "2.6.0";
     public static final File   homedir        = new File(System.getProperty("user.home"));
     public static final File   workdir        = new File(System.getProperty("user.dir"));
 
