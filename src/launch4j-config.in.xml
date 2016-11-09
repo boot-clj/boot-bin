@@ -8,7 +8,14 @@
   <jre>
     <path></path>
     <minVersion>1.7.0</minVersion>
+    <!-- Removing maxHeapSize setting because if it's specified in this
+         configuration it can't be overridden in the boot.l4j.ini file,
+         which means that the user has no way to set it at runtime to a
+         different value.
+
+         See: http://launch4j.sourceforge.net/docs.html#Additional_jvm_options
     <maxHeapSize>2048</maxHeapSize>
+    -->
     <jdkPreference>preferJdk</jdkPreference>
     <opt>-Dboot.app.path="%EXEFILE%"</opt>
   </jre>
