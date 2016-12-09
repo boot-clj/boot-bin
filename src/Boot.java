@@ -1,5 +1,7 @@
 // vim: et:ts=4:sw=4
 
+import boot.bin.ParentClassLoader;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -9,14 +11,15 @@ import java.nio.file.Files;
 import java.util.regex.Pattern;
 import java.lang.reflect.Method;
 import static java.nio.file.StandardCopyOption.*;
-
+    
 @SuppressWarnings("unchecked")
 public class Boot {
 
-    public static final String initialVersion = "2.5.2";
-    public static final File   homedir        = new File(System.getProperty("user.home"));
-    public static final File   workdir        = new File(System.getProperty("user.dir"));
-
+    public static final String            initialVersion = "2.5.2";
+    public static final File              homedir        = new File(System.getProperty("user.home"));
+    public static final File              workdir        = new File(System.getProperty("user.dir"));
+    public static final ParentClassLoader loader         = new ParentClassLoader(Boot.class.getClassLoader());
+    
     public static File
     mkFile(File parent, String... kids) throws Exception {
         File ret = parent;
@@ -225,13 +228,8 @@ public class Boot {
 
     public static URLClassLoader
     loadJar(File jar) throws Exception {
-        URLClassLoader cl = (URLClassLoader) ClassLoader.getSystemClassLoader();
-        Class          sc = URLClassLoader.class;
-        Method         cm = sc.getDeclaredMethod("addURL", URL.class);
-
-        cm.setAccessible(true);
-        cm.invoke(cl, new Object[]{jar.toURI().toURL()});
-        return cl; }
+        loader.addURL(jar.toURI().toURL());
+        return loader; }
 
     public static void
     main(String[] args) throws Exception {
@@ -251,8 +249,9 @@ public class Boot {
             System.setProperty("BOOT_VERSION", initialVersion);
             System.err.println("Running for the first time, BOOT_VERSION not set: updating to latest."); }
 
-        URLClassLoader cl = loadJar(f);
-        Class          c  = Class.forName("boot.App", true, cl);
-        Method         m  = c.getMethod("main", String[].class);
+        loadJar(f);
+        tccl(loader);
+        Class  c  = Class.forName("boot.App", true, loader);
+        Method m  = c.getMethod("main", String[].class);
 
         m.invoke(null, new Object[]{a}); }}
