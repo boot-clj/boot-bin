@@ -11,15 +11,15 @@ import java.nio.file.Files;
 import java.util.regex.Pattern;
 import java.lang.reflect.Method;
 import static java.nio.file.StandardCopyOption.*;
-    
+
 @SuppressWarnings("unchecked")
 public class Boot {
 
-    public static final String            initialVersion = "2.5.2";
+    public static final String            initialVersion = "2.7.2";
     public static final File              homedir        = new File(System.getProperty("user.home"));
     public static final File              workdir        = new File(System.getProperty("user.dir"));
     public static final ParentClassLoader loader         = new ParentClassLoader(Boot.class.getClassLoader());
-    
+
     public static File
     mkFile(File parent, String... kids) throws Exception {
         File ret = parent;
