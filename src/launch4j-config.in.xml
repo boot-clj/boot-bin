@@ -1,6 +1,6 @@
 <launch4jConfig>
   <headerType>console</headerType>
-  <outfile>bin/boot.exe</outfile>
+  <outfile>target/boot.exe</outfile>
   <jar>target/loader.jar</jar>
   <classPath>
     <mainClass>Boot</mainClass>

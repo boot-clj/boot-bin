@@ -15,13 +15,18 @@ Boot executable&mdash;downloads and runs [Boot](http://boot-clj.com).
 System requirements:
 
 * Java 7
-* Boot
 * Bash shell
 * [launch4j](http://launch4j.sourceforge.net/)
 
 ```
-./build.sh # builds bin/boot.sh (Unix) and bin/boot.exe (Windows)
+./build.sh # builds target/boot.sh (Unix) and target/boot.exe (Windows)
 ```
+
+Running various artifacts:
+
+- `target/Boot.class`: `java -cp target Boot`
+- `target/loader.jar`: `java -jar target/loader.jar`
+- `target/boot.sh`: `./target/boot.sh`
 
 ## License
 
