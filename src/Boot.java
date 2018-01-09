@@ -182,7 +182,17 @@ public class Boot {
 
     public static String
     downloadUrl(String version, String name) throws Exception {
-        return String.format("https://github.com/boot-clj/boot/releases/download/%s/%s", version, name); }
+        // FEATURE FLAG - Enabling this will all cause all non-snapshot
+        // releases from 2.8 onwards to be downloaded from Clojars
+        Boolean clojarsDownloadEnabled = false;
+        if (clojarsDownloadEnabled &&
+            0 < version.compareTo("2.8") &&
+            !version.endsWith("SNAPSHOT") &&
+            name.equals("boot.jar")) {
+            String urlFormat = "https://repo.clojars.org/boot/base/%s/base-%s-uber.jar";
+            return String.format(urlFormat, version, version);
+        } else { // 2.7.2 and lower download releases from github
+            return String.format("https://github.com/boot-clj/boot/releases/download/%s/%s", version, name); }}
 
     public static File
     validateBinaryFile(File f) throws Exception {
