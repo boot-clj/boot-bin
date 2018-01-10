@@ -4,7 +4,7 @@ set -euo pipefail
 
 process_properties() {
     if [[ -f "$1" ]]; then
-        while IFS='=' read -r key value; do
+        while IFS='=' read -r key value || [[ -n "$key" ]]; do
             if [[ -n "$value" ]]; then
                 if [[ "$key" == "BOOT_JAVA_COMMAND" ]]; then
                     java_command="$value"
