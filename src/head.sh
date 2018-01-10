@@ -38,4 +38,4 @@ fi
 self="${BASH_SOURCE[0]}"
 selfdir="$(cd "$(dirname "${self}")" ; pwd)"
 selfpath="$selfdir/$(basename "$self")"
-exec "$java_command" "${options[@]}" -Dboot.app.path="$selfpath" -jar "$0" "$@"
+exec "$java_command" "${options[@]-}" -Dboot.app.path="$selfpath" -jar "$0" "$@"
