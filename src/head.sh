@@ -37,9 +37,9 @@ fi
 
 # Setting env vars for java process so this information can be retrieved easily
 export BOOT_JAVA_COMAND="$java_command"
-export BOOT_JVM_OPTIONS="$options"
+export BOOT_JVM_OPTIONS="${options[*]}"
 
 self="${BASH_SOURCE[0]}"
-selfdir="$(cd "$(dirname "${self}")" ; pwd)"
+selfdir="$(cd "$(dirname "${self}")" && pwd)"
 selfpath="$selfdir/$(basename "$self")"
-exec "$java_command" "${options[@]-}" -Dboot.app.path="$selfpath" -jar "$0" "$@"
+exec "$java_command" "${options[@]}" -Dboot.app.path="$selfpath" -jar "$0" "$@"
