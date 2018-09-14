@@ -1,8 +1,6 @@
 # boot-bin
 
-[changes](https://github.com/boot-clj/boot-bin/blob/master/CHANGES.md)
-
-Boot executable — downloads and runs [Boot](http://boot-clj.com).
+Boot executable&mdash;downloads and runs [Boot](http://boot-clj.com).
 
 * Compatible with any version of Boot, 2.0.0 or later.
 * Unix / OSX / Linux / Windows
