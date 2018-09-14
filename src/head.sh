@@ -35,10 +35,6 @@ if [[ -n "${BOOT_JVM_OPTIONS-}" ]]; then
     options=($BOOT_JVM_OPTIONS)
 fi
 
-# Setting env vars for java process so this information can be retrieved easily
-export BOOT_JAVA_COMAND="$java_command"
-export BOOT_JVM_OPTIONS="$options"
-
 self="${BASH_SOURCE[0]}"
 selfdir="$(cd "$(dirname "${self}")" ; pwd)"
 selfpath="$selfdir/$(basename "$self")"
