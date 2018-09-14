@@ -26,7 +26,7 @@ declare -a options=(${BOOT_JVM_OPTIONS-})
 process_properties "${BOOT_HOME:-$HOME/.boot}/boot.properties"
 process_properties "boot.properties"
 
-# environment variables take precdence
+# environment variables take precedence
 
 if [[ -n "${BOOT_JAVA_COMMAND-}" ]]; then
     java_command="$BOOT_JAVA_COMMAND"
@@ -36,10 +36,10 @@ if [[ -n "${BOOT_JVM_OPTIONS-}" ]]; then
 fi
 
 # Setting env vars for java process so this information can be retrieved easily
-export BOOT_JAVA_COMAND="$java_command"
-export BOOT_JVM_OPTIONS="$options"
+export BOOT_JAVA_COMMAND="$java_command"
+export BOOT_JVM_OPTIONS="${options[*]}"
 
 self="${BASH_SOURCE[0]}"
-selfdir="$(cd "$(dirname "${self}")" ; pwd)"
+selfdir="$(cd "$(dirname "${self}")" && pwd)"
 selfpath="$selfdir/$(basename "$self")"
-exec "$java_command" "${options[@]-}" -Dboot.app.path="$selfpath" -jar "$0" "$@"
+exec "$java_command" "${options[@]}" -Dboot.app.path="$selfpath" -jar "$0" "$@"
