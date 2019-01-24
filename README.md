@@ -1,3 +1,7 @@
+<p align="center" color="red">
+  :warning: <code>THIS REPO HAS BEEN DEPRECATED AND ARCHIVED. DEVELOPMENT MOVED TO <a href="http://github.com/boot-clj/boot-native">BOOT-CLJ/BOOT-NATIVE</a>.</code> :warning:
+</p>
+
 # boot-bin
 
 Boot executable&mdash;downloads and runs [Boot](http://boot-clj.com).
