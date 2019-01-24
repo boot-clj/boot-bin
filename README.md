@@ -1,5 +1,5 @@
 <p align="center" color="red">
-  :warning: <code>THIS REPO HAS BEEN DEPRECATED AND ARCHIVED. DEVELOPMENT MOVED TO <a href="http://github.com/boot-clj/boot-native">BOOT-CLJ/BOOT-NATIVE</a>.</code> :warning:
+  :warning: <code>THIS REPO HAS BEEN DEPRECATED AND ARCHIVED. DEVELOPMENT MOVED TO <a href="http://github.com/boot-clj/bootstrap">BOOT-CLJ/BOOTSTRAP</a>.</code> :warning:
 </p>
 
 # boot-bin
